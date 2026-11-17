@@ -1,0 +1,52 @@
+name: Download Zip, Unzip and Cleanup
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  download-and-unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repoyu Kopyala (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Dropbox'tan KvaraBB.zip Dosyasını İndir
+        run: |
+          # Doğrudan indirme bağlantısı (dl=1)
+          ZIP_URL="https://www.dropbox.com/scl/fi/rsxw38edfqbcz71izkzln/KvaraBB.zip?rlkey=uvqb21sxfo99goamfzs8mr2sp&st=fruvi71x&dl=1"
+          
+          echo "Zip dosyası indiriliyor..."
+          curl -L -o KvaraBB.zip "$ZIP_URL"
+
+      - name: KvaraBB.zip Dosyasını Eksiksiz Aç ve Temizle
+        run: |
+          ZIP_FILE="KvaraBB.zip"
+          
+          if [ -f "$ZIP_FILE" ]; then
+            echo "$ZIP_FILE bulundu, klasör yapısı korunarak çıkarılıyor..."
+            # -o: Üzerine yazma izni verir, -q: Sessiz/temiz çıktı sağlar
+            unzip -o -q "$ZIP_FILE" -d .
+            
+            echo "İşlem tamamlandı, zip dosyası siliniyor..."
+            rm "$ZIP_FILE"
+          else
+            echo "Hata: İndirilen zip dosyası bulunamadı!"
+            exit 1
+          fi
+
+      - name: Değişiklikleri Repoya Kaydet (Commit & Push)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add .
+          git status
+          
+          # Değişiklik varsa commit at ve push et
+          if git diff-index --quiet HEAD --; then
+            echo "Hiçbir değişiklik yok."
+          else
+            git commit -m "chore: download KvaraBB.zip from Dropbox, unzip all contents and clean up"
+            git push
+          fi
