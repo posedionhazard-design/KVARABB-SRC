@@ -1,9 +1,9 @@
-name: macOS Makefile Build
+name: Build Theos Tweak
 
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # Manuel tetikleme (Run workflow tuşu) için
+  workflow_dispatch: # Manuel tetikleme (Run workflow) için
 
 jobs:
   build:
@@ -16,26 +16,33 @@ jobs:
         with:
           submodules: recursive
 
-      # 2. Theos Kurulumu ve Ortam Değişkeninin Tanımlanması
+      # 2. Gerekli Araçların (ldid ve dpkg) Yüklenmesi
+      - name: Install Dependencies
+        run: |
+          brew install ldid dpkg
+
+      # 3. Theos Kurulumu ve Ortam Değişkeninin Tanımlanması
       - name: Setup Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
 
-      # 3. Xcode / Command Line Tools Sürüm Bilgisini Kontrol Etme
-      - name: Check Environment
-        run: |
-          xcodebuild -version
-          gcc --version
-
-      # 4. KvaraBB Klasörüne Girip Makefile ile Derleme
+      # 4. KvaraBB Klasöründe Paralel Derleme (Hızlı Derleme)
       - name: Build with Makefile
         run: |
           cd KvaraBB
           
           if [ -f "Makefile" ]; then
-            make THEOS=$THEOS
+            # macOS çekirdek sayısını otomatik algılayıp -j parametresiyle hızlandırır
+            make -j$(sysctl -n hw.ncpu) THEOS=$THEOS
           else
             echo "HATA: KvaraBB klasörü içerisinde Makefile bulunamadı!"
             exit 1
           fi
+
+      # 5. Derlenen .deb Paketini Artifact Olarak Kaydetme
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KAMUI-Pro-Deb
+          path: KvaraBB/packages/*.deb
