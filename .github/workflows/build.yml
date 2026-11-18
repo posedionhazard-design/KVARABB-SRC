@@ -10,13 +10,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # 1. Repoyu ve alt modülleri (varsa) çekme
+      # 1. Repoyu ve alt modülleri çekme
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # 2. Theos'u Kurulumu ve Ortam Değişkeninin Tanımlanması
+      # 2. Theos Kurulumu ve Ortam Değişkeninin Tanımlanması
       - name: Setup Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
@@ -38,4 +38,4 @@ jobs:
           else
             echo "HATA: KvaraBB klasörü içerisinde Makefile bulunamadı!"
             exit 1
-          %
+          fi
