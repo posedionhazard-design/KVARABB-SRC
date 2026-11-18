@@ -1,10 +1,10 @@
-export THEOS=/home/acer/theos/
+THEOS ?= /home/acer/theos
 THEOS_DEVICE_IP = 192.168.1.4
 ARCHS = arm64
 DEBUG = 0
 FINALPACKAGE = 1
 FOR_RELEASE = 1
-THEOS_PACKAGE_SCHEME=rootless
+THEOS_PACKAGE_SCHEME = rootless
 
 include $(THEOS)/makefiles/common.mk
 
