@@ -3,8 +3,7 @@ name: macOS Makefile Build
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch: # Manuel tetikleme (Run workflow tuşu) için bu şarttır!
 
 jobs:
   build:
