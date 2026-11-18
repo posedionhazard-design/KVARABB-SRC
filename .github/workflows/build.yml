@@ -3,7 +3,7 @@ name: macOS Makefile Build
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # Manuel tetikleme için
+  workflow_dispatch: # Manuel tetikleme (Run workflow tuşu) için
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
           cd KvaraBB
           
           if [ -f "Makefile" ]; then
-            make
+            make THEOS=$THEOS
           else
             echo "HATA: KvaraBB klasörü içerisinde Makefile bulunamadı!"
             exit 1
