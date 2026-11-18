@@ -3,33 +3,39 @@ name: macOS Makefile Build
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # Manuel tetikleme (Run workflow tuşu) için bu şarttır!
+  workflow_dispatch: # Manuel tetikleme için
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      # 1. Repoyu GitHub Actions runner'ına çekme
+      # 1. Repoyu ve alt modülleri (varsa) çekme
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      # 2. Xcode / Command Line Tools Sürüm Bilgisini Kontrol Etme
+      # 2. Theos'u Kurulumu ve Ortam Değişkeninin Tanımlanması
+      - name: Setup Theos
+        run: |
+          git clone --recursive https://github.com/theos/theos.git $HOME/theos
+          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+
+      # 3. Xcode / Command Line Tools Sürüm Bilgisini Kontrol Etme
       - name: Check Environment
         run: |
           xcodebuild -version
           gcc --version
 
-      # 3. KvaraBB Klasörüne Girip Makefile ile Derleme
+      # 4. KvaraBB Klasörüne Girip Makefile ile Derleme
       - name: Build with Makefile
         run: |
-          # Dosyaların bulunduğu alt klasöre geçiş yapıyoruz (Gerekirse dizini uyarlayabilirsiniz)
           cd KvaraBB
           
-          # Eğer Makefile içerideyse derlemeyi başlat ve hataları raporla
           if [ -f "Makefile" ]; then
             make
           else
             echo "HATA: KvaraBB klasörü içerisinde Makefile bulunamadı!"
             exit 1
-          fi
+          %
