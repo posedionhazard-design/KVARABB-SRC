@@ -1,0 +1,36 @@
+
+ 
+#include "../SDK.hpp"
+
+namespace SDK
+{
+
+
+
+
+
+
+
+
+
+struct FBattleItemData UBattleItemHandle_VirtualCharacter_C::ExtractItemData()
+{
+	static UFunction *pFunc = 0;
+	if (!pFunc)
+		pFunc  = UObject::FindObject<UFunction>("Function BattleItemHandle_VirtualCharacter.BattleItemHandle_VirtualCharacter_C.ExtractItemData");
+
+	UBattleItemHandle_VirtualCharacter_C_ExtractItemData_Params params;
+
+	auto flags = pFunc->FunctionFlags;
+
+	UObject *currentObj = (UObject *) this;
+	currentObj->ProcessEvent(pFunc, &params);
+
+	pFunc->FunctionFlags = flags;
+
+	return params.ReturnValue;
+}
+
+
+}
+

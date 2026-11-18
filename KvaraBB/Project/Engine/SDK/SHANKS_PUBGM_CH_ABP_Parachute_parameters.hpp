@@ -1,0 +1,165 @@
+#pragma once
+
+
+ 
+#include "../SDK.hpp"
+
+namespace SDK
+{
+
+
+
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequencePlayer_FD44ACE0489529B1B1E3468593ABF6EC_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendListByBool_F246D3BC43638C1E4A0CD7A4093ECFE3_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendListByBool_BB16DD9C48109CFD1788B3B60A435C67_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendSpacePlayer_EC7772CA4717595422791DB0356E7446_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendListByBool_99288328421057D37BB1198AA773CFA8_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SyncBlendSpacePlayerSafety_23C71D0842200B0BB48F7F89E4304980_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequencePlayer_D3DD31C0472B6C0F4726D7BCD13BE4FD_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequencePlayer_693DD741490FB5D23D825FBDF1CAF303_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_4A2747AE48EAD59BF53D288CCDE102BD_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_70C75196485F1D5760DEEA95ED192B22_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendListByBool_61EF6894468110B4D589E1B7009DAEEA_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SyncBlendSpacePlayerSafety_7898FCF247C6376EA96264ABAA935A32_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_A39C00F94B8B17F3DF23A99C3DDB2E88_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_B53A6CA547FE1C98AF198C8EA998D46A_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_9326BBEB4B42336572D0429EE91307E5_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_B4DC46DC4A69BEE6420B65B133C2DA7D_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_FD5B9C494EBA47F8974327B3D99915E2_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_EF558E8C47A2D32F0AA02E9DC166B80B_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_BD7572964E901FCB78C8ADA9BFA6FB05_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_F1D98C164D1DA7E269F82B99AA85A3C0_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_B50C1AE84D9436FFBC33709F6F0EB106_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_320BE4BD4FA38ED2E9247FBA473D5E69_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequencePlayer_99D9907646EC8278473B61B0AAA2D6F9_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequenceEvaluator_020889A2426931D7C123DA9D3B491177_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_SequencePlayer_7004288B4C09A7CC124BB0BE9F26874B_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_8E329B0A47E416418324F99CE29A2401_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendSpacePlayer_7F58C2804CD31C02288F4B81263A22FF_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_TransitionResult_80DFA2864DFC581215F60B95F7DC9380_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_EvaluateGraphExposedInputs_ExecuteUbergraph_CH_ABP_Parachute_AnimGraphNode_BlendListByBool_8A5819BC46CE926E4F3D8EB521DF5E1A_Params
+{
+};
+
+
+struct UCH_ABP_Parachute_C_ExecuteUbergraph_CH_ABP_Parachute_Params
+{
+	int                                                EntryPoint;                                               
+};
+
+}
+
