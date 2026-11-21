@@ -11,13 +11,25 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
       - name: Install Dependencies
         run: |
-          brew install ldid dpkg
+          brew install ldid dpkg ccache
+          echo "PATH=/opt/homebrew/opt/ccache/libexec:$PATH" >> $GITHUB_ENV
+          echo "CCACHE_DIR=$HOME/.cache/ccache" >> $GITHUB_ENV
+
+      - name: Restore Build Cache (ccache & SDK objects)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ccache
+            KvaraBB/.theos/obj
+          key: kamui-pro-cache-${{ runner.os }}-${{ hashFiles('KvaraBB/Makefile', 'KvaraBB/Project/Engine/SDK/**') }}
+          restore-keys: |
+            kamui-pro-cache-${{ runner.os }}-
 
       - name: Setup Theos and iOS SDK
         run: |
@@ -38,6 +50,9 @@ jobs:
             exit 1
           fi
 
+          # Eski .deb kalıntısını temizle (yeni paketin net görülmesi için)
+          rm -rf packages/*.deb
+
           make -j$(sysctl -n hw.ncpu) THEOS=$THEOS
           make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless THEOS=$THEOS
 
@@ -45,7 +60,7 @@ jobs:
           ls -la packages/ || true
 
       - name: Upload Package Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: KAMUI-Pro-Deb
           path: KvaraBB/packages/*.deb
