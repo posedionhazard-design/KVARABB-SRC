@@ -3,46 +3,50 @@ name: Build Theos Tweak
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # Manuel tetikleme (Run workflow) için
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      # 1. Repoyu ve alt modülleri çekme
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # 2. Gerekli Araçların (ldid ve dpkg) Yüklenmesi
       - name: Install Dependencies
         run: |
           brew install ldid dpkg
 
-      # 3. Theos Kurulumu ve Ortam Değişkeninin Tanımlanması
-      - name: Setup Theos
+      - name: Setup Theos and iOS SDK
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
 
-      # 4. KvaraBB Klasöründe Paralel Derleme (Hızlı Derleme)
-      - name: Build with Makefile
+          mkdir -p $HOME/theos/sdks
+          if [ -z "$(ls -A $HOME/theos/sdks 2>/dev/null)" ]; then
+            git clone --depth 1 https://github.com/theos/sdks.git $HOME/theos/sdks
+          fi
+
+      - name: Build and Package KAMUI-Pro
         run: |
           cd KvaraBB
-          
-          if [ -f "Makefile" ]; then
-            # macOS çekirdek sayısını otomatik algılayıp -j parametresiyle hızlandırır
-            make -j$(sysctl -n hw.ncpu) THEOS=$THEOS
-          else
+
+          if [ ! -f "Makefile" ]; then
             echo "HATA: KvaraBB klasörü içerisinde Makefile bulunamadı!"
             exit 1
           fi
 
-      # 5. Derlenen .deb Paketini Artifact Olarak Kaydetme
+          make -j$(sysctl -n hw.ncpu) THEOS=$THEOS
+          make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless THEOS=$THEOS
+
+          echo "--- Oluşan paketler ---"
+          ls -la packages/ || true
+
       - name: Upload Package Artifact
         uses: actions/upload-artifact@v4
         with:
           name: KAMUI-Pro-Deb
           path: KvaraBB/packages/*.deb
+          if-no-files-found: warn
