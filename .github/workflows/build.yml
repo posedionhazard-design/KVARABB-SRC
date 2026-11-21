@@ -50,18 +50,32 @@ jobs:
             exit 1
           fi
 
-          # Eski .deb kalıntısını temizle (yeni paketin net görülmesi için)
-          rm -rf packages/*.deb
+          rm -rf packages/*.deb output_dylib
 
           make -j$(sysctl -n hw.ncpu) THEOS=$THEOS
           make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless THEOS=$THEOS
 
-          echo "--- Oluşan paketler ---"
+          # Üretilen .dylib ve .plist dosyalarını tek klasöre kopyala
+          mkdir -p output_dylib
+          find .theos/obj -name "KAMUI-Pro.dylib" -exec cp {} output_dylib/ \;
+          cp KAMUI-Pro.plist output_dylib/ || true
+
+          echo "--- Oluşan .deb paketleri ---"
           ls -la packages/ || true
 
-      - name: Upload Package Artifact
+          echo "--- Oluşan .dylib dosyaları ---"
+          ls -la output_dylib/ || true
+
+      - name: Upload Deb Artifact
         uses: actions/upload-artifact@v5
         with:
           name: KAMUI-Pro-Deb
           path: KvaraBB/packages/*.deb
+          if-no-files-found: warn
+
+      - name: Upload Dylib Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: KAMUI-Pro-Dylib
+          path: KvaraBB/output_dylib/*
           if-no-files-found: warn
